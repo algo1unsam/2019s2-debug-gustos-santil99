@@ -13,14 +13,14 @@ test "El bolichito no es brillante si tiene una pelota y una placa" {
 	bolichito.ponerEnMostrador(pelota)
 	bolichito.ponerEnVidriera(placa)
 	
-	assert.notThat(bolichito.esBrillante())
+	assert.notThat(bolichito.esBrillante()) // No cumple
 }
 
 test "El bolichito es monocromático si tiene una remera y una placa roja" {
 	bolichito.ponerEnMostrador(remera)
 	bolichito.ponerEnVidriera(placa)
 	
-	assert.that(bolichito.esMonocromatico())
+	assert.that(bolichito.esMonocromatico())  // No cumple
 }
 
 test "El bolichito no es monocromático si tiene una remera y una pelota" {
@@ -70,7 +70,7 @@ test "El bolichito con una remera y una pelota puede ofrecerle algo a Estefanía
 	bolichito.ponerEnMostrador(remera)
 	bolichito.ponerEnVidriera(pelota)
 	
-	assert.that(bolichito.puedeOfrecerleAlgoA(estefania))
+	assert.that(bolichito.puedeOfrecerleAlgoA(estefania))  // No cumple
 }
 
 test "El bolichito con una remera y una pelota puede ofrecerle algo a Juan" {
