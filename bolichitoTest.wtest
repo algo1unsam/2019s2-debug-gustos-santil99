@@ -1,0 +1,152 @@
+import bolichito.*
+import objetos.*
+import personas.*
+
+test "El bolichito es brillante si tiene un muñeco y una placa" {
+	bolichito.ponerEnMostrador(munieco)
+	bolichito.ponerEnVidriera(placa)
+	
+	assert.that(bolichito.esBrillante())
+}
+
+test "El bolichito no es brillante si tiene una pelota y una placa" {
+	bolichito.ponerEnMostrador(pelota)
+	bolichito.ponerEnVidriera(placa)
+	
+	assert.notThat(bolichito.esBrillante())
+}
+
+test "El bolichito es monocromático si tiene una remera y una placa roja" {
+	placa.setColor(rojo)
+	bolichito.ponerEnMostrador(remera)
+	bolichito.ponerEnVidriera(placa)
+	
+	assert.that(bolichito.esMonocromatico())
+}
+
+test "El bolichito no es monocromático si tiene una remera y una pelota" {
+	bolichito.ponerEnMostrador(remera)
+	bolichito.ponerEnVidriera(pelota)
+	
+	assert.notThat(bolichito.esMonocromatico())
+}
+
+test "El bolichito esta desequilibrado si tiene una pelota en el mostrador y una remera en la vidriera" {
+	bolichito.ponerEnMostrador(pelota)
+	bolichito.ponerEnVidriera(remera)
+	
+	assert.that(bolichito.estaDesequilibrado())
+}
+
+test "El bolichito no esta desequilibrado si tiene una remera en el mostrador y una pelota en la vidriera" {
+	bolichito.ponerEnMostrador(remera)
+	bolichito.ponerEnVidriera(pelota)
+	
+	assert.notThat(bolichito.estaDesequilibrado())
+}
+
+test "El bolichito puede mejorar si tiene una pelota en el mostrador y una remera en la vidriera" {
+	bolichito.ponerEnMostrador(pelota)
+	bolichito.ponerEnVidriera(remera)
+	
+	assert.that(bolichito.puedeMejorar())
+}
+
+test "El bolichito puede mejorar si tiene una remera y una placa roja" {
+	placa.setColor(rojo)
+	bolichito.ponerEnMostrador(remera)
+	bolichito.ponerEnVidriera(placa)
+	
+	assert.that(bolichito.puedeMejorar())
+}
+
+test "El bolichito no puede mejorar si tiene una remera en el mostrador y una pelota en la vidriera" {
+	bolichito.ponerEnMostrador(remera)
+	bolichito.ponerEnVidriera(pelota)
+	
+	assert.notThat(bolichito.puedeMejorar())
+}
+
+test "El bolichito con una remera y una pelota puede ofrecerle algo a Estefanía" {
+	bolichito.ponerEnMostrador(remera)
+	bolichito.ponerEnVidriera(pelota)
+	
+	assert.notThat(bolichito.puedeOfrecerleAlgoA(estefania))
+}
+
+test "El bolichito con una remera y una pelota puede ofrecerle algo a Juan" {
+	bolichito.ponerEnMostrador(remera)
+	bolichito.ponerEnVidriera(pelota)
+	
+	assert.that(bolichito.puedeOfrecerleAlgoA(juan))
+}
+
+test "El bolichito con una remera y una pelota puede ofrecerle algo a Luisa" {
+	bolichito.ponerEnMostrador(remera)
+	bolichito.ponerEnVidriera(pelota)
+	
+	assert.notThat(bolichito.puedeOfrecerleAlgoA(luisa))
+}
+
+test "Un bolichito con un banquito en mostrador y una cajita de cobre con una pelota dentro en vidriera no está desequilibrado y tiene algo naranja." {
+	caja.setMaterial(cobre)
+	caja.setContiene(pelota)
+	bolichito.ponerEnMostrador(banquito)
+	bolichito.ponerEnVidriera(caja)
+	
+	assert.notThat(bolichito.estaDesequilibrado() and bolichito.tieneAlgoDeColor(naranja))
+}
+
+test "Un bolichito con un banquito en mostrador y una cajita de cobre con un arito adentro en vidriera esta desequilibrado" {
+	caja.setMaterial(cobre)
+	caja.setContiene(arito)
+	bolichito.ponerEnMostrador(banquito)
+	bolichito.ponerEnVidriera(caja)
+	
+	assert.that(bolichito.estaDesequilibrado())
+}
+
+test "Un bolichito con un banquito en mostrador y una cajita de cobre con una pelota dentro en vidriera no está desequilibrado y no tiene algo naranja." {
+	banquito.setColor(verde)
+	caja.setMaterial(cobre)
+	caja.setContiene(pelota)
+	bolichito.ponerEnMostrador(banquito)
+	bolichito.ponerEnVidriera(caja)
+		
+	assert.notThat(bolichito.tieneAlgoDeColor(naranja))
+}
+
+test "Bolichito con un muñeco de 500 gramos en mostrador y una cajita de plomo con un arito dentro en vidriera es brillante pero no tiene luz."{
+	munieco.setPeso(500)
+	bolichito.ponerEnMostrador(munieco)
+	caja.setMaterial(plomo)
+	caja.setContiene(arito)
+	bolichito.ponerEnVidriera(caja)
+	
+	assert.that(bolichito.esBrillante() and not(bolichito.tieneLuz()))
+	
+	}
+	
+test "Bolichito con un muñeco de 500 gramos en mostrador y una cajita de plomo cromado con un arito dentro en vidriera es brillante pero no tiene luz."{
+	munieco.setPeso(500)
+	bolichito.ponerEnMostrador(munieco)
+	plomo.estado("cromado")
+	caja.setMaterial(plomo)
+	caja.setContiene(arito)
+	bolichito.ponerEnVidriera(caja)
+	
+	assert.that(bolichito.esBrillante() and bolichito.tieneLuz())
+	
+	}
+	
+test "Bolichito con un muñeco de 500 gramos en mostrador y una cajita de plomo oxidado con un arito dentro en vidriera es brillante pero no tiene luz."{
+	munieco.setPeso(500)
+	bolichito.ponerEnMostrador(munieco)
+	plomo.estado("oxidado")
+	caja.setMaterial(plomo)
+	caja.setContiene(arito)
+	bolichito.ponerEnVidriera(caja)
+	
+	assert.notThat(bolichito.esBrillante() and bolichito.tieneLuz())
+	
+	}
